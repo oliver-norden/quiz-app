@@ -5,8 +5,9 @@ class Quiz {
         this.renderQuestion();
     }
 
-    toggleAnswerSelected(question, answer) {
-        this.questions[question].answers[answer].selected = !this.questions[question].answers[answer].selected;
+    toggleAnswerSelected(answer) {
+        const curQuestIdx = this.currentQuestionIdx;
+        this.questions[curQuestIdx].answers[answer].selected = !this.questions[curQuestIdx].answers[answer].selected;
     }
 
     correctQuiz() {
@@ -56,7 +57,7 @@ class Quiz {
             answerCheckbox.type = 'checkbox';
             answerCheckbox.id = answerId;
             answerCheckbox.checked = answer.selected;
-            answerCheckbox.setAttribute('questionIdx', idx);
+            answerCheckbox.addEventListener('change', this.toggleAnswerSelected.bind(this, idx)); // Add event listener to toggle selected propery of answer
 
             // Answer label
             let answerLabel = document.createElement('label');
