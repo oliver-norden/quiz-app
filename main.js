@@ -30,6 +30,7 @@ class Quiz {
             return quizScore + questionScore;
         }, 0);
 
+        alert(`Score: ${quizScore}`);
         return quizScore
     }
 
@@ -89,11 +90,21 @@ class Quiz {
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
         questionDiv.appendChild(prevQuestionBtn);
 
-        // Next question button
-        let nextQuestionBtn = document.createElement('button');
-        nextQuestionBtn.textContent = 'Next question ->';
-        nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
-        questionDiv.appendChild(nextQuestionBtn);
+        // Create next question button or correct quiz button
+        if (this.currentQuestionIdx === this.questions.length - 1){
+            // Correct quiz button
+            let correctQuizBtn = document.createElement('button');
+            correctQuizBtn.textContent = 'Correct quiz';
+            correctQuizBtn.addEventListener('click', this.correctQuiz.bind(this));
+            questionDiv.appendChild(correctQuizBtn);
+        }
+        else{
+            // Next question button
+            let nextQuestionBtn = document.createElement('button');
+            nextQuestionBtn.textContent = 'Next question ->';
+            nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
+            questionDiv.appendChild(nextQuestionBtn);
+        }
 
         // Append question and answers
         parentElement.appendChild(questionDiv);
