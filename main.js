@@ -1,6 +1,8 @@
 class Quiz {
     constructor(questions) {
         this.questions = questions;
+        this.currentQuestionIdx = 0;
+        this.renderQuestion();
     }
 
     toggleAnswerSelected(question, answer) {
@@ -23,6 +25,54 @@ class Quiz {
         }, 0);
 
         return quizScore
+    }
+
+    renderQuestion() {
+
+        // Get current question and answers
+        const { question, answers } = this.questions[this.currentQuestionIdx]; 
+
+        const parentElement = document.getElementById('root');
+
+        // Create question div
+        let questionDiv = document.createElement('div');
+        questionDiv.id = 'question';
+
+        // Create question paragraph
+        let questionEl = document.createElement('p');
+        questionEl.textContent = question;
+        questionDiv.appendChild(questionEl);
+
+        // Create answer elements
+        answers.forEach((answer, idx) => {
+            //Answer container
+            let answerContainer = document.createElement('div');
+
+            // AnswerId (For label binding)
+            const answerId = `q${this.currentQuestionIdx}a${idx}`
+
+            // Answer checkbox
+            let answerCheckbox = document.createElement('input');
+            answerCheckbox.type = 'checkbox';
+            answerCheckbox.id = answerId;
+            answerCheckbox.checked = answer.selected;
+            answerCheckbox.setAttribute('questionIdx', idx);
+
+            // Answer label
+            let answerLabel = document.createElement('label');
+            answerLabel.setAttribute('for', answerId);
+            answerLabel.textContent = answer.answer;
+
+            // Appending children
+            answerContainer.appendChild(answerCheckbox);
+            answerContainer.appendChild(answerLabel);
+            questionDiv.appendChild(answerContainer);
+            
+        });
+
+        // Append question and answers
+        parentElement.appendChild(questionDiv);
+
     }
 }
 
@@ -65,16 +115,7 @@ const questions = [
     }
 ]
 
-let game = new Quiz(questions);
-
-game.toggleAnswerSelected(0,1);
-game.toggleAnswerSelected(1,1);
-game.toggleAnswerSelected(1,2);
-console.log(game.questions);
-alert(`Score: ${game.correctQuiz()}`);
-
 document.addEventListener('DOMContentLoaded', () => {
-    let hello = document.createElement('p');
-    hello.textContent = 'Hello world';
-    document.getElementById('root').appendChild(hello);
+    
+    let game = new Quiz(questions);
 });
