@@ -2,6 +2,10 @@ class Quiz {
     constructor(questions) {
         this.questions = questions;
     }
+
+    toggleAnswerSelected(question, answer) {
+        this.questions[question].answers[answer].selected = !this.questions[question].answers[answer].selected;
+    }
 }
 
 const questions = [
@@ -44,6 +48,9 @@ const questions = [
 ]
 
 let game = new Quiz(questions);
+
+game.toggleAnswerSelected(0,0);
+console.log(game.questions);
 
 document.addEventListener('DOMContentLoaded', () => {
     let hello = document.createElement('p');
