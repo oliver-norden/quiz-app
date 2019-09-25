@@ -10,6 +10,11 @@ class Quiz {
         this.questions[curQuestIdx].answers[answer].selected = !this.questions[curQuestIdx].answers[answer].selected;
     }
 
+    incrementQuestion(inc) {
+        this.currentQuestionIdx += inc;
+        this.renderQuestion();
+    }
+
     correctQuiz() {
         // Loop through questions and accumulate score
         const quizScore = this.questions.reduce((quizScore, question) => {
@@ -70,6 +75,18 @@ class Quiz {
             questionDiv.appendChild(answerContainer);
             
         });
+
+        // Previous question button
+        let prevQuestionBtn = document.createElement('button');
+        prevQuestionBtn.textContent = '<- Prev question';
+        prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
+        questionDiv.appendChild(prevQuestionBtn);
+
+        // Next question button
+        let nextQuestionBtn = document.createElement('button');
+        nextQuestionBtn.textContent = 'Next question ->';
+        nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
+        questionDiv.appendChild(nextQuestionBtn);
 
         // Append question and answers
         parentElement.appendChild(questionDiv);
