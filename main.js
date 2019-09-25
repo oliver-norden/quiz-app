@@ -86,6 +86,7 @@ class Quiz {
         let prevQuestionBtn = document.createElement('button');
         prevQuestionBtn.textContent = '<- Prev question';
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
+        prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
         questionDiv.appendChild(prevQuestionBtn);
 
         // Next question button
