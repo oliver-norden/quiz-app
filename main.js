@@ -41,8 +41,14 @@ class Quiz {
         const parentElement = document.getElementById('root');
 
         // Create question div
-        let questionDiv = document.createElement('div');
-        questionDiv.id = 'question';
+        const questionContainerId = 'question';
+        let questionDiv = document.getElementById(questionContainerId) || document.createElement('div'); // Create new container if one does not exist
+        questionDiv.id = questionContainerId;
+
+        // Clear any existing question
+        while (questionDiv.firstChild){
+            questionDiv.removeChild(questionDiv.firstChild);
+        }        
 
         // Create question paragraph
         let questionEl = document.createElement('p');
