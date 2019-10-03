@@ -79,7 +79,7 @@ class Quiz {
 
         // Question range input and label
         {
-            const noOfQuestions = 10; // To be set dynamicaly from question api
+            const noOfQuestions = this.questions.length; // To be set dynamicaly from question api
             const rangeDefault = noOfQuestions/2;
             const questionRangeId = 'questionRange';
 
