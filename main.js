@@ -6,7 +6,6 @@ class Quiz {
         this.currentQuestionIdx = 0;
         this.parentElement = document.getElementById('root');
         this.renderMenu();
-        this.renderQuestion();
     }
 
     toggleAnswerSelected(answer) {
@@ -16,6 +15,17 @@ class Quiz {
 
     incrementQuestion(inc) {
         this.currentQuestionIdx += inc;
+        this.renderQuestion();
+    }
+
+    startQuiz(menuDivid) {
+        // Slice questions array to user desired length
+        this.questions = this.questions.slice(this.selectedNumberOfQuestions - 1);
+
+        // Remove menu
+        const menu = document.getElementById(menuDivid);
+        menu.parentElement.removeChild(menu);
+
         this.renderQuestion();
     }
 
@@ -101,8 +111,14 @@ class Quiz {
             rangeValueHolder.textContent = rangeDefault;
             questionRangeLabel.prepend(rangeValueHolder);
 
+            // Start quiz button
+            let startButton = document.createElement('button');
+            startButton.addEventListener('click', this.startQuiz.bind(this, menuContainerId));
+            startButton.textContent = 'Start quiz';
+
             menuDiv.appendChild(questionRange);
             menuDiv.appendChild(questionRangeLabel);
+            menuDiv.appendChild(startButton);
 
         }
 
