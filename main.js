@@ -142,7 +142,12 @@ class Quiz {
         // Clear any existing question
         while (questionDiv.firstChild){
             questionDiv.removeChild(questionDiv.firstChild);
-        }        
+        }  
+        
+        // Create question info (Index etc)
+        let questionInfo = document.createElement('h1');
+        questionInfo.textContent = `Question ${this.currentQuestionIdx} of ${this.selectedNumberOfQuestions}`;
+        questionDiv.appendChild(questionInfo);
 
         // Create question paragraph
         let questionEl = document.createElement('p');
