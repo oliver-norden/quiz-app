@@ -2,6 +2,8 @@ class Quiz {
     constructor(questions) {
         this.questions = questions;
         this.currentQuestionIdx = 0;
+        this.parentElement = document.getElementById('root');
+        this.renderMenu();
         this.renderQuestion();
     }
 
@@ -34,12 +36,25 @@ class Quiz {
         return quizScore
     }
 
+    renderMenu() {
+
+        const parentElement = this.parentElement;
+
+        // Create menu div
+        const menuContainerId = 'quizMenu';
+        let menuDiv = document.createElement('div');
+        menuDiv.id = menuContainerId;
+
+        // Append menu div
+        parentElement.appendChild(menuDiv);
+    }
+
     renderQuestion() {
 
         // Get current question and answers
         const { question, answers } = this.questions[this.currentQuestionIdx]; 
 
-        const parentElement = document.getElementById('root');
+        const parentElement = this.parentElement;
 
         // Create question div
         const questionContainerId = 'question';
