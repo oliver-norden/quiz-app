@@ -81,6 +81,7 @@ class Quiz {
         {
             const noOfQuestions = this.questions.length; // To be set dynamicaly from question api
             const rangeDefault = noOfQuestions/2;
+            this.selectedNumberOfQuestions = rangeDefault; // Default number of questions
             const questionRangeId = 'questionRange';
 
             let questionRange = document.createElement('input');
