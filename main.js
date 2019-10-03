@@ -1,6 +1,7 @@
 class Quiz {
     constructor(questions) {
         this.questions = questions;
+        this.userName = '';
         this.currentQuestionIdx = 0;
         this.parentElement = document.getElementById('root');
         this.renderMenu();
@@ -36,6 +37,11 @@ class Quiz {
         return quizScore
     }
 
+    handleMenuInput(e) {
+        const { name, value } = e.target;
+        this[name] = value;
+    }
+
     renderMenu() {
 
         const parentElement = this.parentElement;
@@ -44,6 +50,12 @@ class Quiz {
         const menuContainerId = 'quizMenu';
         let menuDiv = document.createElement('div');
         menuDiv.id = menuContainerId;
+
+        // Name field
+        let nameField = document.createElement('input');
+        nameField.name = 'userName';
+        nameField.addEventListener('focusout', this.handleMenuInput.bind(this));
+        menuDiv.appendChild(nameField);
 
         // Append menu div
         parentElement.appendChild(menuDiv);
