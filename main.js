@@ -20,7 +20,7 @@ class Quiz {
 
     startQuiz(menuDivid) {
         // Slice questions array to user desired length
-        this.questions = this.questions.slice(this.selectedNumberOfQuestions - 1);
+        this.questions = this.questions.slice(0, this.selectedNumberOfQuestions);
 
         // Remove menu
         const menu = document.getElementById(menuDivid);
