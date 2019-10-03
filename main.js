@@ -2,6 +2,7 @@ class Quiz {
     constructor(questions) {
         this.questions = questions;
         this.userName = '';
+        this.selectedNumberOfQuestions = 0;
         this.currentQuestionIdx = 0;
         this.parentElement = document.getElementById('root');
         this.renderMenu();
@@ -40,6 +41,7 @@ class Quiz {
     handleMenuInput(e) {
         const { name, value } = e.target;
         this[name] = value;
+        console.log(this[name]);
     }
 
     renderMenu() {
@@ -62,8 +64,47 @@ class Quiz {
         let nameField = document.createElement('input');
         nameField.name = 'userName';
         nameField.id = nameFieldId;
-        nameField.addEventListener('focusout', this.handleMenuInput.bind(this));
+        nameField.addEventListener('change', this.handleMenuInput.bind(this));
         menuDiv.appendChild(nameField);
+
+        // Question range input and label
+        {
+            const noOfQuestions = 10; // To be set dynamicaly from question api
+            const rangeDefault = noOfQuestions/2;
+            const questionRangeId = 'questionRange';
+
+            let questionRange = document.createElement('input');
+            questionRange.type = 'range';
+            questionRange.id = questionRangeId;
+            questionRange.name = 'selectedNumberOfQuestions';
+
+            // Value parameters
+            questionRange.min = 1;
+            questionRange.max = noOfQuestions;
+            questionRange.value = rangeDefault;
+
+            // Label updating
+            questionRange.addEventListener('input', function() {
+                this.nextSibling.children[0].textContent = this.value;
+            });
+
+            // State update
+            questionRange.addEventListener('change', this.handleMenuInput.bind(this))
+
+            // Label 
+            let questionRangeLabel = document.createElement('label');
+            questionRangeLabel.for = questionRangeId;
+            questionRangeLabel.textContent = ' Questions';
+
+            // Range value holder
+            let rangeValueHolder = document.createElement('span');
+            rangeValueHolder.textContent = rangeDefault;
+            questionRangeLabel.prepend(rangeValueHolder);
+
+            menuDiv.appendChild(questionRange);
+            menuDiv.appendChild(questionRangeLabel);
+
+        }
 
         // Append menu div
         parentElement.appendChild(menuDiv);
