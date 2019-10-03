@@ -146,7 +146,7 @@ class Quiz {
         
         // Create question info (Index etc)
         let questionInfo = document.createElement('h1');
-        questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}`;
+        questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}, ${this.currentQuestionIdx} answered.`;
         questionDiv.appendChild(questionInfo);
 
         // Create question paragraph
