@@ -51,9 +51,17 @@ class Quiz {
         let menuDiv = document.createElement('div');
         menuDiv.id = menuContainerId;
 
+        // Name field label
+        const nameFieldId = 'userName';
+        let nameFieldLabel = document.createElement('label');
+        nameFieldLabel.textContent = 'Name';
+        nameFieldLabel.for = nameFieldId;
+        menuDiv.appendChild(nameFieldLabel);
+
         // Name field
         let nameField = document.createElement('input');
         nameField.name = 'userName';
+        nameField.id = nameFieldId;
         nameField.addEventListener('focusout', this.handleMenuInput.bind(this));
         menuDiv.appendChild(nameField);
 
