@@ -200,6 +200,7 @@ class Quiz {
         prevQuestionBtn.textContent = '<- Prev question';
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
+        prevQuestionBtn.setAttribute('class', 'btn btn-secondary');
         questionDiv.appendChild(prevQuestionBtn);
 
         // Create next question button or correct quiz button
@@ -207,6 +208,7 @@ class Quiz {
             // Correct quiz button
             let correctQuizBtn = document.createElement('button');
             correctQuizBtn.textContent = 'Correct quiz';
+            correctQuizBtn.setAttribute('class', 'btn btn-success');
             correctQuizBtn.addEventListener('click', this.correctQuiz.bind(this));
             questionDiv.appendChild(correctQuizBtn);
         }
@@ -214,6 +216,7 @@ class Quiz {
             // Next question button
             let nextQuestionBtn = document.createElement('button');
             nextQuestionBtn.textContent = 'Next question ->';
+            nextQuestionBtn.setAttribute('class', 'btn btn-primary');
             nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
             questionDiv.appendChild(nextQuestionBtn);
         }
