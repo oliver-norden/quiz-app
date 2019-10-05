@@ -169,20 +169,25 @@ class Quiz {
         questionDiv.id = questionContainerId;
         questionDiv.classList.add('container');
 
+        // Question card
+        let questionCard = document.createElement('div');
+        questionCard.classList.add('card');
+
         // Clear any existing question
         while (questionDiv.firstChild){
             questionDiv.removeChild(questionDiv.firstChild);
         }  
         
-        // Create question info (Index etc)
+        // Create question info (Card Header)
         let questionInfo = document.createElement('h1');
+        questionInfo.classList.add('card-header');
         questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}, ${this.currentQuestionIdx} answered.`;
-        questionDiv.appendChild(questionInfo);
+        questionCard.appendChild(questionInfo);
 
         // Create question paragraph
         let questionEl = document.createElement('p');
         questionEl.textContent = question;
-        questionDiv.appendChild(questionEl);
+        questionCard.appendChild(questionEl);
 
         // Create answer elements
         answers.forEach((answer, idx) => {
@@ -207,7 +212,7 @@ class Quiz {
             // Appending children
             answerContainer.appendChild(answerCheckbox);
             answerContainer.appendChild(answerLabel);
-            questionDiv.appendChild(answerContainer);
+            questionCard.appendChild(answerContainer);
             
         });
 
@@ -217,7 +222,7 @@ class Quiz {
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
         prevQuestionBtn.classList.add('btn', 'btn-secondary');
-        questionDiv.appendChild(prevQuestionBtn);
+        questionCard.appendChild(prevQuestionBtn);
 
         // Create next question button or correct quiz button
         if (this.currentQuestionIdx === this.questions.length - 1){
@@ -226,7 +231,7 @@ class Quiz {
             correctQuizBtn.textContent = 'Correct quiz';
             correctQuizBtn.setAttribute('class', 'btn btn-success');
             correctQuizBtn.addEventListener('click', this.correctQuiz.bind(this));
-            questionDiv.appendChild(correctQuizBtn);
+            questionCard.appendChild(correctQuizBtn);
         }
         else{
             // Next question button
@@ -234,10 +239,11 @@ class Quiz {
             nextQuestionBtn.textContent = 'Next question ->';
             nextQuestionBtn.setAttribute('class', 'btn btn-primary');
             nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
-            questionDiv.appendChild(nextQuestionBtn);
+            questionCard.appendChild(nextQuestionBtn);
         }
 
         // Append question and answers
+        questionDiv.appendChild(questionCard);
         parentElement.appendChild(questionDiv);
 
     }
