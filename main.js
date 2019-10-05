@@ -74,6 +74,7 @@ class Quiz {
         const menuContainerId = 'quizMenu';
         let menuDiv = document.createElement('div');
         menuDiv.id = menuContainerId;
+        menuDiv.classList.add('container');
 
         // Name field label
         const nameFieldId = 'userName';
@@ -150,6 +151,7 @@ class Quiz {
         const questionContainerId = 'question';
         let questionDiv = document.getElementById(questionContainerId) || document.createElement('div'); // Create new container if one does not exist
         questionDiv.id = questionContainerId;
+        questionDiv.classList.add('container');
 
         // Clear any existing question
         while (questionDiv.firstChild){
