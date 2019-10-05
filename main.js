@@ -1,11 +1,19 @@
 class Quiz {
-    constructor(questions) {
-        this.questions = questions;
+    constructor() {
+        this.questions = [];
         this.userName = '';
         this.selectedNumberOfQuestions = 0;
         this.currentQuestionIdx = 0;
         this.parentElement = document.getElementById('root');
-        this.renderMenu();
+        this.getQuestions()
+            .then(this.renderMenu.bind(this))
+            .catch(err => alert('Something went wrong...'));
+    }
+
+    getQuestions() {
+        return fetch('http://quiz.olivernorden.se/questions.php')
+            .then(res => res.json())
+                .then(questions => this.questions = questions);
     }
 
     toggleAnswerSelected(answer) {
@@ -210,46 +218,7 @@ class Quiz {
     }
 }
 
-const questions = [
-    {
-        question: "Question 1",
-        answers: [
-            {
-                answer: "Answer 1",
-                correct: false
-            },
-            {
-                answer: "Answer 2",
-                correct: true
-
-            },
-            {
-                answer: "Answer 3",
-                correct: false
-            }
-        ]
-    },
-    {
-        question: "Question 2",
-        answers: [
-            {
-                answer: "Answer 1",
-                correct: false
-            },
-            {
-                answer: "Answer 2",
-                correct: true
-
-            },
-            {
-                answer: "Answer 3",
-                correct: true
-            }
-        ]
-    }
-]
-
 document.addEventListener('DOMContentLoaded', () => {
     
-    let game = new Quiz(questions);
+    let game = new Quiz();
 });
