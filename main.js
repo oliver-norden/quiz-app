@@ -76,19 +76,29 @@ class Quiz {
         menuDiv.id = menuContainerId;
         menuDiv.classList.add('container');
 
-        // Name field label
-        const nameFieldId = 'userName';
-        let nameFieldLabel = document.createElement('label');
-        nameFieldLabel.textContent = 'Name';
-        nameFieldLabel.for = nameFieldId;
-        menuDiv.appendChild(nameFieldLabel);
+        // Name form group
+        {
+            // Form group
+            let nameFormGroup = document.createElement('div');
+            nameFormGroup.classList.add('form-group');
 
-        // Name field
-        let nameField = document.createElement('input');
-        nameField.name = 'userName';
-        nameField.id = nameFieldId;
-        nameField.addEventListener('change', this.handleMenuInput.bind(this));
-        menuDiv.appendChild(nameField);
+            // Name field label
+            const nameFieldId = 'userName';
+            let nameFieldLabel = document.createElement('label');
+            nameFieldLabel.textContent = 'Name';
+            nameFieldLabel.for = nameFieldId;
+            nameFormGroup.appendChild(nameFieldLabel);
+
+            // Name field
+            let nameField = document.createElement('input');
+            nameField.name = 'userName';
+            nameField.id = nameFieldId;
+            nameField.classList.add('form-control');
+            nameField.addEventListener('change', this.handleMenuInput.bind(this));
+            nameFormGroup.appendChild(nameField);
+
+            menuDiv.appendChild(nameFormGroup);
+        }
 
         // Question range input and label
         {
