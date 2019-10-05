@@ -107,9 +107,13 @@ class Quiz {
             this.selectedNumberOfQuestions = rangeDefault; // Default number of questions
             const questionRangeId = 'questionRange';
 
+            let rangeContainer = document.createElement('div');
+            rangeContainer.classList.add('form-group');
+
             let questionRange = document.createElement('input');
             questionRange.type = 'range';
             questionRange.id = questionRangeId;
+            questionRange.classList.add('custom-range');
             questionRange.name = 'selectedNumberOfQuestions';
 
             // Value parameters
@@ -119,7 +123,7 @@ class Quiz {
 
             // Label updating
             questionRange.addEventListener('input', function() {
-                this.nextSibling.children[0].textContent = this.value;
+                this.previousSibling.children[0].textContent = this.value;
             });
 
             // State update
@@ -135,16 +139,17 @@ class Quiz {
             rangeValueHolder.textContent = rangeDefault;
             questionRangeLabel.prepend(rangeValueHolder);
 
-            // Start quiz button
-            let startButton = document.createElement('button');
-            startButton.addEventListener('click', this.startQuiz.bind(this, menuContainerId));
-            startButton.textContent = 'Start quiz';
-
-            menuDiv.appendChild(questionRange);
-            menuDiv.appendChild(questionRangeLabel);
-            menuDiv.appendChild(startButton);
+            rangeContainer.appendChild(questionRangeLabel);
+            rangeContainer.appendChild(questionRange);
+            menuDiv.appendChild(rangeContainer);
 
         }
+
+        // Start quiz button
+        let startButton = document.createElement('button');
+        startButton.addEventListener('click', this.startQuiz.bind(this, menuContainerId));
+        startButton.textContent = 'Start quiz';
+        menuDiv.appendChild(startButton);
 
         // Append menu div
         parentElement.appendChild(menuDiv);
