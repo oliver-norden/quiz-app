@@ -4,6 +4,7 @@ class Quiz {
         this.userName = '';
         this.selectedNumberOfQuestions = 0;
         this.currentQuestionIdx = 0;
+        this.score = 0;
         this.parentElement = document.getElementById('root');
         this.getQuestions()
             .then(this.renderMenu.bind(this))
@@ -57,7 +58,7 @@ class Quiz {
         }, 0);
 
         alert(`Score: ${quizScore}`);
-        return quizScore
+        this.score = quizScore;
     }
 
     handleMenuInput(e) {
