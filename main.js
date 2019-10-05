@@ -13,7 +13,11 @@ class Quiz {
     getQuestions() {
         return fetch('http://quiz.olivernorden.se/questions.php')
             .then(res => res.json())
-                .then(questions => this.questions = questions);
+                .then(questions => {
+                    questions.forEach(question => 
+                        this.questions.push(new Question(question))
+                    )
+                });
     }
 
     toggleAnswerSelected(answer) {
@@ -215,6 +219,15 @@ class Quiz {
         // Append question and answers
         parentElement.appendChild(questionDiv);
 
+    }
+}
+
+class Question {
+    constructor(questionObj){
+        const { question, category, answers } = questionObj;
+        this.question = question;
+        this.category = category;
+        this.answers = answers;
     }
 }
 

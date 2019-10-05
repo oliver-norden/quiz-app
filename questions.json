@@ -1,6 +1,7 @@
 [
     {
         "question": "Question 1",
+        "category": "Generic",
         "answers": [
             {
                 "answer": "Answer 1",
@@ -19,6 +20,7 @@
     },
     {
         "question": "Question 2",
+        "category": "Generic",
         "answers": [
             {
                 "answer": "Answer 1",
