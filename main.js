@@ -149,6 +149,7 @@ class Quiz {
         let startButton = document.createElement('button');
         startButton.addEventListener('click', this.startQuiz.bind(this, menuContainerId));
         startButton.textContent = 'Start quiz';
+        startButton.classList.add('btn', 'btn-primary', 'btn-block');
         menuDiv.appendChild(startButton);
 
         // Append menu div
@@ -215,7 +216,7 @@ class Quiz {
         prevQuestionBtn.textContent = '<- Prev question';
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
-        prevQuestionBtn.setAttribute('class', 'btn btn-secondary');
+        prevQuestionBtn.classList.add('btn', 'btn-secondary');
         questionDiv.appendChild(prevQuestionBtn);
 
         // Create next question button or correct quiz button
