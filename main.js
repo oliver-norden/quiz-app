@@ -232,6 +232,5 @@ class Question {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    let game = new Quiz();
+    new Quiz();
 });
