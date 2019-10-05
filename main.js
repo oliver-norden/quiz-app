@@ -63,7 +63,6 @@ class Quiz {
     handleMenuInput(e) {
         const { name, value } = e.target;
         this[name] = value;
-        console.log(this[name]);
     }
 
     renderMenu() {
