@@ -181,7 +181,7 @@ class Quiz {
         // Create question info (Card Header)
         let questionInfo = document.createElement('h1');
         questionInfo.classList.add('card-header');
-        questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}, ${this.currentQuestionIdx} answered.`;
+        questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}`;
         questionCard.appendChild(questionInfo);
 
         // Create question paragraph
