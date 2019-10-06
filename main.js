@@ -231,31 +231,38 @@ class Quiz {
         // Append answers container
         questionCardBody.appendChild(answersContainer);
 
+        // Button container
+        let btnContainer = document.createElement('div');
+        btnContainer.classList.add('block-btn-container');
+
         // Previous question button
         let prevQuestionBtn = document.createElement('button');
         prevQuestionBtn.textContent = '<- Prev question';
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
-        prevQuestionBtn.classList.add('btn', 'btn-secondary');
-        questionCardBody.appendChild(prevQuestionBtn);
+        prevQuestionBtn.classList.add('btn', 'btn-secondary', 'btn-block');
+        btnContainer.appendChild(prevQuestionBtn);
 
         // Create next question button or correct quiz button
         if (this.currentQuestionIdx === this.questions.length - 1){
             // Correct quiz button
             let correctQuizBtn = document.createElement('button');
             correctQuizBtn.textContent = 'Correct quiz';
-            correctQuizBtn.setAttribute('class', 'btn btn-success');
+            correctQuizBtn.classList.add('btn', 'btn-success', 'btn-block');
             correctQuizBtn.addEventListener('click', this.correctQuiz.bind(this));
-            questionCardBody.appendChild(correctQuizBtn);
+            btnContainer.appendChild(correctQuizBtn);
         }
         else{
             // Next question button
             let nextQuestionBtn = document.createElement('button');
             nextQuestionBtn.textContent = 'Next question ->';
-            nextQuestionBtn.setAttribute('class', 'btn btn-primary');
+            nextQuestionBtn.classList.add('btn', 'btn-primary', 'btn-block');
             nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
-            questionCardBody.appendChild(nextQuestionBtn);
+            btnContainer.appendChild(nextQuestionBtn);
         }
+
+        // Append buttons to card body
+        questionCardBody.appendChild(btnContainer);
 
         // Append question and answers
         questionCard.appendChild(questionCardBody);
