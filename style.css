@@ -11,6 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .form-check-input:checked + .form-check-label {
