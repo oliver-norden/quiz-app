@@ -14,7 +14,7 @@ class Quiz {
     }
 
     getQuestions() {
-        return fetch('https://quiz.olivernorden.se/questions.php')
+        return fetch('./questions.php')
             .then(res => res.json())
                 .then(questions => {
                     questions.forEach(question => 
