@@ -57,7 +57,7 @@ class Quiz {
             return quizScore + questionScore;
         }, 0);
 
-        alert(`Score: ${quizScore}`);
+        alert(`${this.userName} scored ${quizScore} point(s)`);
         this.score = quizScore;
     }
 
