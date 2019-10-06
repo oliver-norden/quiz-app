@@ -5,6 +5,8 @@ class Quiz {
         this.selectedNumberOfQuestions = 0;
         this.currentQuestionIdx = 0;
         this.score = 0;
+        this.correctSelectScore = 1;
+        this.incorrectSelectScore = -1;
         this.parentElement = document.getElementById('root');
         this.getQuestions()
             .then(this.renderMenu.bind(this))
@@ -42,6 +44,16 @@ class Quiz {
         this.renderQuestion();
     }
 
+    possibleScore() {
+        return this.questions.reduce((quizScore, question) => {
+            // Loop through answers and accumulate score
+            const questionScore = question.answers.reduce((questionScore, answer) => {
+                return (answer.correct) ? questionScore + this.correctSelectScore : questionScore; // Answer is correct
+            }, 0);
+            return quizScore + questionScore;
+        }, 0);
+    }
+
     correctQuiz() {
         // Loop through questions and accumulate score
         const quizScore = this.questions.reduce((quizScore, question) => {
@@ -49,15 +61,15 @@ class Quiz {
             // Loop through answers and accumulate score
             const questionScore = question.answers.reduce((questionScore, answer) => {
                 const { correct, selected } = answer;
-                if (correct && selected) return questionScore + 1; // Correct answer selected
+                if (correct && selected) return questionScore + this.correctSelectScore; // Correct answer selected
                 if (!correct && !selected) return questionScore; // Wrong answer not selected 
-                if (correct !== selected) return questionScore - 1; // Wrong answer selected or correct answer not selected
+                if (correct !== selected) return questionScore + this.incorrectSelectScore; // Wrong answer selected or correct answer not selected
             }, 0);
 
             return quizScore + questionScore;
         }, 0);
 
-        alert(`${this.userName} scored ${quizScore} point(s)`);
+        alert(`${this.userName} scored ${quizScore} point(s) of ${this.possibleScore()} possible`);
         this.score = quizScore;
     }
 
