@@ -193,6 +193,10 @@ class Quiz {
         questionEl.textContent = question;
         questionCardBody.appendChild(questionEl);
 
+        // Answers container
+        let answersContainer = document.createElement('div');
+        answersContainer.classList.add('form-checkboxes');
+
         // Create answer elements
         answers.forEach((answer, idx) => {
             //Answer container
@@ -219,9 +223,13 @@ class Quiz {
             // Appending children
             answerContainer.appendChild(answerCheckbox);
             answerContainer.appendChild(answerLabel);
-            questionCardBody.appendChild(answerContainer);
+
+            answersContainer.appendChild(answerContainer);
             
         });
+
+        // Append answers container
+        questionCardBody.appendChild(answersContainer);
 
         // Previous question button
         let prevQuestionBtn = document.createElement('button');

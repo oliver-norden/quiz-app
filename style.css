@@ -4,6 +4,12 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.1s ease-in-out box-shadow;
+    width: 100%;
+}
+
+.form-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .form-check-input:checked + .form-check-label {
@@ -14,6 +20,7 @@
 .form-check {
     margin-bottom: 5px;
     padding-left: 0;
+    width: 100%;
 }
 
 .form-check-input {
