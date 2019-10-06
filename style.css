@@ -1,3 +1,21 @@
-body {
-    color: red;
+.form-check-label {
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out box-shadow;
+}
+
+.form-check-input:checked + .form-check-label {
+    box-shadow: 0 0 3px var(--primary);
+    border-color: var(--primary);
+}
+
+.form-check {
+    margin-bottom: 5px;
+    padding-left: 0;
+}
+
+.form-check-input {
+    display: none;
 }

@@ -197,6 +197,7 @@ class Quiz {
         answers.forEach((answer, idx) => {
             //Answer container
             let answerContainer = document.createElement('div');
+            answerContainer.classList.add('form-check');
 
             // AnswerId (For label binding)
             const answerId = `q${this.currentQuestionIdx}a${idx}`
@@ -205,12 +206,14 @@ class Quiz {
             let answerCheckbox = document.createElement('input');
             answerCheckbox.type = 'checkbox';
             answerCheckbox.id = answerId;
+            answerCheckbox.classList.add('form-check-input');
             answerCheckbox.checked = answer.selected;
             answerCheckbox.addEventListener('change', this.toggleAnswerSelected.bind(this, idx)); // Add event listener to toggle selected propery of answer
 
             // Answer label
             let answerLabel = document.createElement('label');
             answerLabel.setAttribute('for', answerId);
+            answerLabel.classList.add('form-check-label');
             answerLabel.textContent = answer.answer;
 
             // Appending children
