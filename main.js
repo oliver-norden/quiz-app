@@ -184,10 +184,14 @@ class Quiz {
         questionInfo.textContent = `Question ${this.currentQuestionIdx + 1} of ${this.selectedNumberOfQuestions}`;
         questionCard.appendChild(questionInfo);
 
+        // Question card body
+        let questionCardBody = document.createElement('div');
+        questionCardBody.classList.add('card-body');
+
         // Create question paragraph
         let questionEl = document.createElement('p');
         questionEl.textContent = question;
-        questionCard.appendChild(questionEl);
+        questionCardBody.appendChild(questionEl);
 
         // Create answer elements
         answers.forEach((answer, idx) => {
@@ -212,7 +216,7 @@ class Quiz {
             // Appending children
             answerContainer.appendChild(answerCheckbox);
             answerContainer.appendChild(answerLabel);
-            questionCard.appendChild(answerContainer);
+            questionCardBody.appendChild(answerContainer);
             
         });
 
@@ -222,7 +226,7 @@ class Quiz {
         prevQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, -1));
         prevQuestionBtn.disabled = !this.currentQuestionIdx; // Disable button if current question index is 0
         prevQuestionBtn.classList.add('btn', 'btn-secondary');
-        questionCard.appendChild(prevQuestionBtn);
+        questionCardBody.appendChild(prevQuestionBtn);
 
         // Create next question button or correct quiz button
         if (this.currentQuestionIdx === this.questions.length - 1){
@@ -231,7 +235,7 @@ class Quiz {
             correctQuizBtn.textContent = 'Correct quiz';
             correctQuizBtn.setAttribute('class', 'btn btn-success');
             correctQuizBtn.addEventListener('click', this.correctQuiz.bind(this));
-            questionCard.appendChild(correctQuizBtn);
+            questionCardBody.appendChild(correctQuizBtn);
         }
         else{
             // Next question button
@@ -239,10 +243,11 @@ class Quiz {
             nextQuestionBtn.textContent = 'Next question ->';
             nextQuestionBtn.setAttribute('class', 'btn btn-primary');
             nextQuestionBtn.addEventListener('click', this.incrementQuestion.bind(this, 1));
-            questionCard.appendChild(nextQuestionBtn);
+            questionCardBody.appendChild(nextQuestionBtn);
         }
 
         // Append question and answers
+        questionCard.appendChild(questionCardBody);
         questionDiv.appendChild(questionCard);
         parentElement.appendChild(questionDiv);
 
