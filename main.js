@@ -97,7 +97,7 @@ class Quiz {
             // Name field label
             const nameFieldId = 'userName';
             let nameFieldLabel = document.createElement('label');
-            nameFieldLabel.textContent = 'Name';
+            nameFieldLabel.textContent = 'Your name';
             nameFieldLabel.for = nameFieldId;
             nameFormGroup.appendChild(nameFieldLabel);
 
